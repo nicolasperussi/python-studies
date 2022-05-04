@@ -1,13 +1,14 @@
-from Words import chooseRandomWord
+from Words import chooseRandomWord, transform, checkLetter
 import os
-import random
 import sys
 
-os.system("cls")
+
+def clearConsole():
+    os.system("cls")
 
 
 def startGame():
-    os.system("cls")
+    clearConsole()
 
     isWordGuessed = False
 
@@ -17,19 +18,45 @@ def startGame():
     theme = input()
 
     guesses = 8
-    word = chooseRandomWord(int(theme) - 1)
-    # playerGuess = 
+    wordToGuess = chooseRandomWord(int(theme) - 1)
+    playerGuess = transform(wordToGuess)
+
+    clearConsole()
 
     while (not isWordGuessed) and (guesses > 0):
-        os.system("cls")
 
+        print('Your word is:')
         print(playerGuess)
-        guesses - 1
+
+        print('')
+        print('Choose 1 to guess a letter')
+        print('Choose 2 to guess the word')
+        choice = input()
+
+        if choice == 1:
+            clearConsole()
+            print('Your word is:')
+            print(playerGuess)
+            print('')
+            print('Please enter a letter:')
+            letterGuess = input()
+
+            playerGuess = checkLetter(wordToGuess, playerGuess, letterGuess)
+
+            # let him make another guess
+        else:
+            # let him guess the word
+            clearConsole()
+            print('Your word is:')
+            print(playerGuess)
+            print('')
+            print('Please enter your guess:')
+            wordGuess = input()
+
+        guesses = guesses - 1
 
 
-# create a 'guess' variable that is the same length as the word, change letters to underscores and keep spaces
 # create a while statement to check if the guess is the same as the word everytime the players makes a guess
-# at every guess, check if the there is any of the guessed letter in the word, then check position and change the underscore to the letter in that position
 
 
 def main():
