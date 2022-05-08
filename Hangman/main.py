@@ -4,7 +4,8 @@ import sys
 
 
 def clearConsole():
-    os.system("cls")
+    # os.system("cls")
+    print('')
 
 
 def startGame():
@@ -17,21 +18,21 @@ def startGame():
     print('Enter 2 to FRUITS')
     theme = input()
 
-    guesses = 8
     wordToGuess = chooseRandomWord(int(theme) - 1)
     playerGuess = transform(wordToGuess)
+    guesses = len(wordToGuess)
 
     clearConsole()
 
     while (not isWordGuessed) and (guesses > 0):
-
+        clearConsole()
         print('Your word is:')
         print(playerGuess)
 
         print('')
         print('Choose 1 to guess a letter')
         print('Choose 2 to guess the word')
-        choice = input()
+        choice = int(input())
 
         if choice == 1:
             clearConsole()
@@ -42,16 +43,17 @@ def startGame():
             letterGuess = input()
 
             playerGuess = checkLetter(wordToGuess, playerGuess, letterGuess)
-
-            # let him make another guess
         else:
-            # let him guess the word
             clearConsole()
             print('Your word is:')
             print(playerGuess)
             print('')
             print('Please enter your guess:')
             wordGuess = input()
+
+            # Create a method to the player guess the whole word
+            # Make sure after all the letters are correct, he takes a guess at the word
+            # And make sure he can guess the word after the number of guesses gets down to zero
 
         guesses = guesses - 1
 

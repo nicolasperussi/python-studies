@@ -44,4 +44,14 @@ def checkLetter(word, playerGuess, guess):
     # if not, then do not change playerGuess
     # return playerGuess
 
+    dividedWord = list(word)
+    dividedPlayerGuess = list(playerGuess)
+
+    for i in range(len(dividedWord)):
+        if (dividedWord[i] == guess):
+            dividedPlayerGuess[i] = guess
+            print(dividedPlayerGuess)
+
+    playerGuess = ''.join(dividedPlayerGuess)
+
     return playerGuess
