@@ -1,12 +1,19 @@
+import time
 from Words import chooseRandomWord, transform, checkLetter
 import os
 import sys
 
 
 def clearConsole():
-    # os.system("cls")
     print('')
+    os.system("cls")
 
+
+def loseGame():
+    clearConsole()
+    print('You lost!')
+    time.sleep(5)
+    sys.exit(0)
 
 def startGame():
     clearConsole()
@@ -24,8 +31,9 @@ def startGame():
 
     clearConsole()
 
-    while (not isWordGuessed) and (guesses > 0):
+    while (isWordGuessed is not True) and (guesses > 0):
         clearConsole()
+        print('You have {} guesses left'.format(guesses))
         print('Your word is:')
         print(playerGuess)
 
@@ -52,13 +60,19 @@ def startGame():
             wordGuess = input()
 
             # Create a method to the player guess the whole word
-            # Make sure after all the letters are correct, he takes a guess at the word
-            # And make sure he can guess the word after the number of guesses gets down to zero
+
+
+        # Make sure after all the letters are correct, he takes a guess at the word
+        # And make sure he can guess the word after the number of guesses gets down to zero
 
         guesses = guesses - 1
 
+    if (guesses <= 0) and isWordGuessed is False:
+        loseGame()
+
 
 # create a while statement to check if the guess is the same as the word everytime the players makes a guess
+
 
 
 def main():
